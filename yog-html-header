@@ -8,7 +8,11 @@ fi
 
 bin=`dirname "$0"`
 directory="$1"
-meta="$directory/metadata.txt"
+metapath="$directory/metadata.txt"
+
+if [ -e "$metapath" ]; then
+	intro=`cat $metapath`
+fi
 
 cat <<EOF
 <html>
@@ -44,4 +48,6 @@ cat <<EOF
                 text-decoration: none;
             }
         </style>
+
+        <p>${intro}</p>
 EOF

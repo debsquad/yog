@@ -41,6 +41,13 @@ The following would be generated:
 	    + filec.mov
 ```
 
+## Metadata
+If a `metadata.txt` file is found in a folder, yog will use its content as an
+introduction paragraph in the index.html.
+
+If a file is named after a media file with a trailing `.txt` extension, it will
+be used for the image title instead of the filename.
+
 ## Installation
 
 ```sh
