@@ -41,6 +41,12 @@ The following would be generated:
 	    + filec.mov
 ```
 
+## Installation
+
+```sh
+sudo cp yog* /usr/bin
+```
+
 ## Requirements
  - /bin/sh
  - ImageMagick
