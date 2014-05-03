@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# Return the lower-cased file extension for a given file.
+#
+
+if [ -z "$1" ]; then
+	echo "usage: `basename $0` filepath" >&2
+	exit 1
+fi
+
+filepath="$1"
+
+echo $filepath \
+	| sed 's/.*\.//g' \
+	| tr '[:upper:]' '[:lower:]'

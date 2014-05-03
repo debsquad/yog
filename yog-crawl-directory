@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# Crawl a given directory for media files and generate an index.html file in
+# this directory.
+#
+
+if [ -z "$1" ]; then
+	echo "usage: `basename $0` path"
+	exit 1
+fi
+
+bin=`dirname "$0"`
+directory="$1"
+index="$directory/index.html"
+
+$bin/yog-html-header "$directory" > "$index"
+
+$bin/yog-find-media "$directory" | while read filepath; do
+	if $bin/yog-process-file "$filepath"; then
+		$bin/yog-html-media "$filepath" >> "$index"
+	fi
+done
+
+$bin/yog-html-footer >> "$index"

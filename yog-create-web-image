@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Create a 1600x1600 (max) image for images and leave videos as-is.
+#
+
+if [ -z "$1" ]; then
+	echo "usage: `basename $0` filepath" >&2
+	exit 1
+fi
+
+bin=`dirname "$0"`
+filepath="$1"
+filename=`basename "$filepath"`
+directory=`dirname "$filepath"`
+target="$directory/web/$filename"
+
+# Already exists.
+if [ -e "$target" ]; then
+	exit 0
+fi
+
+# Video files are just hard-linked.
+if $bin/yog-is-video "$filepath"; then
+	ln "$filepath" "$target"
+	exit 0
+fi
+
+if ! convert -resize 1600x1600 "$filepath" "$target" >/dev/null 2>/dev/null; then
+	echo "yog-create-web-image: unable to process $filepath" >&2
+	exit 1
+fi
+
+exit 0

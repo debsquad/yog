@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# If the file exists and was successfully converted into a thumbnail and web
+# size image, return its filename.
+#
+
+if [ -z "$1" ]; then
+	echo "usage: `basename $0` filepath" >&2
+	exit 1
+fi
+
+bin=`dirname "$0"`
+filepath="$1"
+filename=`basename "$filepath"`
+directory=`dirname "$filepath"`
+
+mkdir -p "$directory/thumbs" "$directory/web"
+
+if ! $bin/yog-create-thumbnail "$filepath"; then
+	exit 1
+fi
+
+if ! $bin/yog-create-web-image "$filepath"; then
+	exit 1
+fi
+
+exit 0

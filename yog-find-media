@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# List all the files *DIRECTLY* in a directory. Filtering out things we don't
+# need, this is where you add filters of filetypes you want to ignore.
+#
+
+if [ -z "$1" ]; then
+	echo "usage: `basename $0` path"
+	exit 1
+fi
+
+find "$1" -depth 1 -type f \
+	| grep -v 'txt$' \
+	| grep -v 'html$' \
+	| grep -v 'DS_Store'

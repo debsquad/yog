@@ -9,8 +9,9 @@ Given the following structure:
 - /home/jimmy
    - example/
       - 2014-01-01_vacation_a/
-         - filea.jpg
-         - fileb.jpg
+         - filea.JPG
+         - fileb.jpeg
+	 - filec.mov
       - 2014-02-01_vacation_b/
 ```
 
@@ -26,15 +27,18 @@ The following would be generated:
 - /home/jimmy
    - example/
       - 2014-01-01_vacation_a/
-         - filea.jpg
-         - fileb.jpg
+         - filea.JPG
+         - fileb.jpeg
+	 - filec.mov
          + index.html
          + thumbs/
-            + filea.jpg
-            + fileb.jpg
+            + filea.JPG.jpg
+            + fileb.jpeg.jpg
+	    + filec.mov.jpg
          + web/
             + filea.jpg
             + fileb.jpg
+	    + filec.mov
 ```
 
 ## Requirements

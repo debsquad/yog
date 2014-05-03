@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Generate a thumbnail size image for the given media.
+#
+
+if [ -z "$1" ]; then
+	echo "usage: `basename $0` filepath" >&2
+	exit 1
+fi
+
+filepath="$1"
+filename=`basename "$filepath"`
+directory=`dirname "$filepath"`
+target="$directory/thumbs/${filename}.jpg"
+
+# Already exists.
+if [ -e "$target" ]; then
+	exit 0
+fi
+
+if ! convert -resize 200x200 "$filepath[0]" "$target" >/dev/null 2>/dev/null; then
+	echo "yog-create-thumbnail: unable to process $filepath" >&2
+	exit 1
+fi
+
+exit 0

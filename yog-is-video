@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Return 0 if the file is a video.
+#
+
+if [ -z "$1" ]; then
+	echo "usage: `basename $0` filepath" >&2
+	exit 1
+fi
+
+bin=`dirname "$0"`
+filepath="$1"
+
+case `$bin/yog-get-extension "$filepath"` in
+	mov|avi|mp4)
+		exit 0
+		;;
+	*)
+		exit 1
+		;;
+esac

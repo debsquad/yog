@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# Return an HTML blob representing the given image.
+#
+
+if [ -z "$1" ]; then
+	echo "usage: `basename $0` filepath" >&2
+	exit 1
+fi
+
+filepath="$1"
+filename=`basename "$filepath"`
+
+if [ -e "$filepath.txt" ]; then
+	title=`cat "$filepath.txt"`
+else
+	title="$filename"
+fi
+
+cat <<EOF
+<div class="image-container">
+	<a href="web/$filename">
+		<img src="thumbs/${filename}.jpg" />
+		<p>$title</p>
+	</a>
+</div>
+EOF
+
+exit 0
