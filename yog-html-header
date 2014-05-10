@@ -47,7 +47,12 @@ cat <<EOF
                 color: #fff;
                 text-decoration: none;
             }
+            h1 {
+                color: blue;
+                margin-left: auto;
+                margin-right: auto;
+            }
         </style>
 
-        <p>${intro}</p>
+        <h1>${intro}</h1>
 EOF
