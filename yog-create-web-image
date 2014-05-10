@@ -30,4 +30,6 @@ if ! convert -auto-orient -resize 1600x1600 "$filepath" "$target" >/dev/null 2>/
 	exit 1
 fi
 
+chmod 644 "$target"
+
 exit 0
