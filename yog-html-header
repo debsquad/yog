@@ -24,7 +24,7 @@ cat <<EOF
             }
             div.image-container {
                 width: 220px;
-                height: 260px;
+                height: 400px;
                 float: left;
                 text-align: center;
             }
