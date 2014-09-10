@@ -12,7 +12,7 @@ bin=`dirname "$0"`
 filepath="$1"
 
 case `$bin/yog-get-extension "$filepath"` in
-	mov|avi|mp4)
+	mov|avi|mp4|3gp)
 		exit 0
 		;;
 	*)
