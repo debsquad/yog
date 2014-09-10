@@ -22,3 +22,5 @@ $bin/yog-find-media "$directory" | while read filepath; do
 done
 
 $bin/yog-html-footer >> "$index"
+
+chmod 644 "$index"
