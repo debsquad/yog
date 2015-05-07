@@ -15,8 +15,7 @@ target="$2"
 indexdir="$target/`basename $directory`"
 index="$indexdir/index.html"
 
-echo $index
-echo $directory
+echo $indexdir
 exit 0
 
 mkdir -p $indexdir

@@ -5,13 +5,12 @@
 #
 
 if [ -z "$1" ]; then
-	echo "usage: `basename $0` path"
+	echo "usage: `basename $0` path target_path"
 	exit 1
 fi
 
 bin=`dirname "$0"`
-target_path="${1}YOG"
 
-find "$1" -type d | while read path; do
+find $1 -type d | while read path; do
 	$bin/yog-crawl-directory "$path" "$target_path"
 done
