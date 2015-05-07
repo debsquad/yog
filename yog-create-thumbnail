@@ -3,16 +3,15 @@
 # Generate a thumbnail size image for the given media.
 #
 
-if [ -z "$1" ]; then
-	echo "usage: `basename $0` filepath target" >&2
+if [ -z "$2" ]; then
+	echo "usage: `basename $0` filepath target_path" >&2
 	exit 1
 fi
 
 filepath="$1"
-filename=`basename "$filepath"`
-directory=`dirname "$filepath"`
 target_path="$2"
-target="$target_path/$directory/thumbs/${filename}.jpg"
+filename=`basename "$filepath"`
+target="$target_path/${filename}.jpg"
 
 # Already exists.
 if [ -e "$target" ]; then

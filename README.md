@@ -18,13 +18,13 @@ Given the following structure:
 And given the following invocation of yog:
 
 ```sh
-yog /home/jimmy/example
+yog /home/jimmy/example /var/www/htdocs/example
 ```
 
 The following would be generated:
 
 ```
-- /home/jimmy
+- /var/www/htdocs
    - example/
       - 2014-01-01_vacation_a/
          - filea.JPG

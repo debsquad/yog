@@ -4,16 +4,17 @@
 # this directory.
 #
 
-if [ -z "$1" ]; then
+if [ -z "$2" ]; then
 	echo "usage: `basename $0` path target_path"
 	exit 1
 fi
 
 bin=`dirname "$0"`
 directory="$1"
-target="$2"
-indexdir="$target/`basename $directory`"
-index="$indexdir/index.html"
+target_path="$2"
+index="$target_path/index.html"
+
+mkdir -p "$target_path"
 
 echo $indexdir
 exit 0
@@ -22,7 +23,7 @@ mkdir -p $indexdir
 $bin/yog-html-header "$directory" > "$index"
 
 $bin/yog-find-media "$directory" | while read filepath; do
-	if $bin/yog-process-file "$filepath" "$target"; then
+	if $bin/yog-process-file "$filepath" "$target_path"; then
 		$bin/yog-html-media "$filepath" >> "$index"
 	fi
 done

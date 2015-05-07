@@ -4,13 +4,16 @@
 # crawl script on them to find media files.
 #
 
-if [ -z "$1" ]; then
+if [ -z "$2" ]; then
 	echo "usage: `basename $0` path target_path"
 	exit 1
 fi
 
 bin=`dirname "$0"`
+base_path="${1%%/}"
+target_path="${2%%/}"
 
-find $1 -type d | while read path; do
-	$bin/yog-crawl-directory "$path" "$target_path"
+find "$base_path" -type d | while read path; do
+	new_target_path="${target_path}${path##$base_path}"
+	$bin/yog-crawl-directory "$path" "$new_target_path"
 done

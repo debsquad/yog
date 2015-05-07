@@ -3,17 +3,16 @@
 # Create a 1600x1600 (max) image for images and leave videos as-is.
 #
 
-if [ -z "$1" ]; then
-	echo "usage: `basename $0` filepath" >&2
+if [ -z "$2" ]; then
+	echo "usage: `basename $0` filepath target_path" >&2
 	exit 1
 fi
 
 bin=`dirname "$0"`
 filepath="$1"
-filename=`basename "$filepath"`
-directory=`dirname "$filepath"`
 target_path="$2"
-target="$target_path/$directory/web/$filename"
+filename=`basename "$filepath"`
+target="$target_path/$filename"
 
 # Already exists.
 if [ -e "$target" ]; then

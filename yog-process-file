@@ -4,24 +4,25 @@
 # size image, return its filename.
 #
 
-if [ -z "$1" ]; then
+if [ -z "$2" ]; then
 	echo "usage: `basename $0` filepath target_path" >&2
 	exit 1
 fi
 
 bin=`dirname "$0"`
 filepath="$1"
+target_path="$2"
 filename=`basename "$filepath"`
-directory=`dirname "$filepath"`
-target="$2"
 
-mkdir -p "$target/$directory/thumbs" #"$target/directory/web"
+mkdir -p "$target_path/thumbs" "$target_path/web"
 
-if ! $bin/yog-create-thumbnail "$filepath" $target; then
+cp "$filepath" "$target_path"
+
+if ! $bin/yog-create-thumbnail "$filepath" "$target_path/thumbs"; then
 	exit 1
 fi
 
-#if ! $bin/yog-create-web-image "$filepath" $target; then
+#if ! $bin/yog-create-web-image "$filepath" "$target_path/web"; then
 #	exit 1
 #fi
 #
