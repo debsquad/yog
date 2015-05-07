@@ -12,7 +12,7 @@ bin=`dirname "$0"`
 filepath="$1"
 filename=`basename "$filepath"`
 directory=`dirname "$filepath"`
-target="$directory/web/$filename"
+target="$2/$directory/web/$filename"
 
 # Already exists.
 if [ -e "$target" ]; then

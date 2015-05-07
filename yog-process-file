@@ -5,7 +5,7 @@
 #
 
 if [ -z "$1" ]; then
-	echo "usage: `basename $0` filepath" >&2
+	echo "usage: `basename $0` filepath target_path" >&2
 	exit 1
 fi
 
@@ -13,15 +13,16 @@ bin=`dirname "$0"`
 filepath="$1"
 filename=`basename "$filepath"`
 directory=`dirname "$filepath"`
+target="$2"
 
-mkdir -p "$directory/thumbs" "$directory/web"
+mkdir -p "$target/$directory/thumbs" #"$target/directory/web"
 
-if ! $bin/yog-create-thumbnail "$filepath"; then
+if ! $bin/yog-create-thumbnail "$filepath" $target; then
 	exit 1
 fi
 
-if ! $bin/yog-create-web-image "$filepath"; then
-	exit 1
-fi
-
+#if ! $bin/yog-create-web-image "$filepath" $target; then
+#	exit 1
+#fi
+#
 exit 0

@@ -5,18 +5,21 @@
 #
 
 if [ -z "$1" ]; then
-	echo "usage: `basename $0` path"
+	echo "usage: `basename $0` path target_path"
 	exit 1
 fi
 
 bin=`dirname "$0"`
 directory="$1"
-index="$directory/index.html"
+target="$2"
+indexdir="$target/$directory"
+index="$target/$directory/index.html"
 
+mkdir -p $indexdir
 $bin/yog-html-header "$directory" > "$index"
 
 $bin/yog-find-media "$directory" | while read filepath; do
-	if $bin/yog-process-file "$filepath"; then
+	if $bin/yog-process-file "$filepath" "$target"; then
 		$bin/yog-html-media "$filepath" >> "$index"
 	fi
 done

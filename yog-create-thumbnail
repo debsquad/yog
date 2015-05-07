@@ -4,14 +4,14 @@
 #
 
 if [ -z "$1" ]; then
-	echo "usage: `basename $0` filepath" >&2
+	echo "usage: `basename $0` filepath target" >&2
 	exit 1
 fi
 
 filepath="$1"
 filename=`basename "$filepath"`
 directory=`dirname "$filepath"`
-target="$directory/thumbs/${filename}.jpg"
+target="$2/$directory/thumbs/${filename}.jpg"
 
 # Already exists.
 if [ -e "$target" ]; then

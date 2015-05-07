@@ -19,10 +19,8 @@ fi
 
 cat <<EOF
 <div class="image-container">
-	<a href="web/$filename">
 		<img src="thumbs/${filename}.jpg" />
 		<p>$title</p>
-	</a>
 </div>
 EOF
 
