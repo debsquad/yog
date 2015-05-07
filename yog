@@ -11,6 +11,7 @@ fi
 
 bin=`dirname "$0"`
 target_path="${1}YOG"
+
 find "$1" -type d | while read path; do
 	$bin/yog-crawl-directory "$path" "$target_path"
 done

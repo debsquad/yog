@@ -12,8 +12,12 @@ fi
 bin=`dirname "$0"`
 directory="$1"
 target="$2"
-indexdir="$target/$directory"
-index="$target/$directory/index.html"
+indexdir="$target/`basename $directory`"
+index="$indexdir/index.html"
+
+echo $index
+echo $directory
+exit 0
 
 mkdir -p $indexdir
 $bin/yog-html-header "$directory" > "$index"

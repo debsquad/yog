@@ -9,6 +9,20 @@ fi
 bin=`dirname "$0"`
 directory="$1"
 metapath="$directory/metadata.txt"
+subdirectories="$directory/subdirectories.txt"
+
+if [ -e $subdirectories ] ; then
+  rm $subdirectories
+fi
+echo "<hr><pre><a href="../">..</a>" > $subdirectories
+find "$1" -maxdepth 1 -type d | grep -Ev "(thumbs|web)" | while read subdir; do
+  echo "<a href="$subdir/">$subdir</a>" >> $subdirectories
+done
+echo "</pre>" >> $subdirectories
+
+if [ -e "$subdirectories" ]; then
+  sudirs=`cat $subdirectories`
+fi
 
 if [ -e "$metapath" ]; then
 	intro=`cat $metapath`
@@ -54,5 +68,8 @@ cat <<EOF
             }
         </style>
 
-        <h1>${intro}</h1>
+        <p>${subdirs}</p>
+
+        <p>${intro}</p>
+        <p></p>
 EOF
