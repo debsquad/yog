@@ -11,7 +11,8 @@ fi
 filepath="$1"
 filename=`basename "$filepath"`
 directory=`dirname "$filepath"`
-target="$2/$directory/thumbs/${filename}.jpg"
+target_path="$2"
+target="$target_path/$directory/thumbs/${filename}.jpg"
 
 # Already exists.
 if [ -e "$target" ]; then
