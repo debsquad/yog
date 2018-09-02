@@ -16,8 +16,6 @@ filename=`basename "$filepath"`
 
 mkdir -p "$target_path/thumbs" "$target_path/web"
 
-cp "$filepath" "$target_path"
-
 if ! $bin/yog-create-thumbnail "$filepath" "$target_path/thumbs"; then
 	exit 1
 fi

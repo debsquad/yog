@@ -8,6 +8,7 @@ if [ -z "$2" ]; then
 	exit 1
 fi
 
+bin=`dirname "$0"`
 filepath="$1"
 target_path="$2"
 filename=`basename "$filepath"`
@@ -18,9 +19,17 @@ if [ -e "$target" ]; then
 	exit 0
 fi
 
-if ! convert -auto-orient -resize 200x200 "$filepath[0]" "$target" >/dev/null 2>/dev/null; then
-	echo "yog-create-thumbnail: unable to process $filepath" >&2
-	exit 1
+
+if $bin/yog-is-video "$filepath"; then
+	if ! ffmpeg -nostdin -v -1 -i "$filepath" -vframes 1 -vcodec pam -an -f image2 -y "$target"; then
+		echo "yog-create-thumbnail: unable to process video $filepath" >&2
+		exit 1
+	fi
+else
+	if ! convert -auto-orient -resize 200x200 "$filepath" "$target" >/dev/null 2>/dev/null; then
+		echo "yog-create-thumbnail: unable to process image $filepath" >&2
+		exit 1
+	fi
 fi
 
 chmod 644 "$target"
